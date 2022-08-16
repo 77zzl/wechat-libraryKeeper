@@ -1,0 +1,28 @@
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.button {
+  position: absolute;
+  bottom: 150rpx;
+  left: 200rpx;
+}
+
+.button image {
+  width: 328rpx;
+  height: 120rpx;
+}
+
+.button-letter {
+  letter-spacing: 5rpx;
+  position: absolute;
+  left: 92rpx;
+  bottom: 48rpx;
+  color: #f1f8fb;
+  font-size: 35rpx;
+}

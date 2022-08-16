@@ -1,0 +1,24 @@
+{
+    "pages": [
+        "pages/library/library",
+        "pages/seat/seat",
+        "pages/area/area"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "馆家",
+        "navigationBarTextStyle": "black"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents",
+    "requiredPrivateInfos": [
+        "getLocation"
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于检测是否到达图书馆"
+        }
+    }
+}

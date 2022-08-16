@@ -1,0 +1,8 @@
+<view class="bg">
+    <image style="width:100%; height:100%;" mode='aspectFill' src="{{bg}}"></image>
+</view>
+<view class="button">
+    <image src="/pages/img/button.png">
+        hello</image>
+    <view class="button-letter" bindtap="chooseArea">进入选位</view>
+</view>

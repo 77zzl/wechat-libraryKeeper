@@ -1,0 +1,8 @@
+{
+    "disableScroll": true,
+    "navigationBarBackgroundColor": "#f6f5f6",
+    "usingComponents": {
+        "l-dialog": "/pages/dist/dialog/index",
+        "l-message": "/pages/dist/message/index"
+    }
+}

@@ -1,0 +1,29 @@
+<l-tabs l-class="area-tabs" l-class-header="swipeable-header" l-class-inactive="swipeable-class-inactive" l-class-line="line-class" l-class-active="swipeable-class-active" active-key="one" swipeable has-line="{{true}}" animated-for-line="{{true}}" content-height="1100" active-color="#72a8d0">
+    <l-tabpanel tab="一楼" key="one" slot="one">
+        <view class="area-card">
+            <view class="item-one" wx:for="{{navi.one}}" wx:for-item="navi" wx:key="index" data-area="{{index}}" data-floor='0' bindtap="onArea">
+                <l-circle percent='{{navi.cnt}}' outer-diameter='220' inner-diameter='160' active-color='#60aad4' background-color='#e6f1f9' show-value='{{true}}' value-size='30' active='{{true}}'></l-circle>
+                <view class="text">{{navi.title}}</view>
+            </view>
+        </view>
+    </l-tabpanel>
+    <l-tabpanel tab="二楼" key="two" slot="two">
+        <view class="area-card">
+            <view class="items" wx:for="{{navi.two}}" wx:for-item="navi" wx:key="index" data-area="{{index}}" data-floor='1' bindtap="onArea">
+                <l-circle percent='{{navi.cnt}}' outer-diameter='110' inner-diameter='80' active-color='#60aad4' background-color='#e6f1f9' show-value='{{true}}' value-size='20' active='{{true}}'></l-circle>
+                <view class="text">{{navi.title}}</view>
+            </view>
+        </view>
+    </l-tabpanel>
+</l-tabs>
+<l-arc-popup show="{{show}}" max-height="500" arc-radius="100">
+    <view class="bottom">
+        <view class="bottom-title" style="font-style: 35rpx;">{{floor[select.floor]}}楼{{select.area}}区</view>
+        <view class="bottom-line"></view>
+        <view class="bottom-item" wx:for="{{showData}}" wx:key="index" wx:for-index="idx" wx:for-item="data">
+            <view>{{idx}}</view>
+            <view>{{data}}</view>
+        </view>
+        <view class="bottom-button" bindtap="chooseArea">我来这里卷</view>
+    </view>
+</l-arc-popup>

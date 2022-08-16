@@ -1,0 +1,100 @@
+<view class='view-seat-all'>
+    <view class="view-seat-area">
+        <view>
+            {{area}}
+        </view>
+    </view>
+    <movable-area class="view-seat-moa" scale-area>
+        <movable-view class='view-seat-slide' direction="all" scale="true" scale-min='0.8' scale-max='2' scale-value="1">
+            <!-- 遍历每一行 -->
+            <block wx:for="{{seatArr}}" wx:for-item="items" wx:for-index="r" wx:key="r">
+                <view class='view-seat-location'>
+                    <!-- 遍历每一列 -->
+                    <block wx:for="{{items}}" wx:for-item="item" wx:for-index="c" wx:key="c">
+                        <block wx:if="{{item.src=='no'}}">
+                            <view class='view-seat-img'></view>
+                        </block>
+                        <block wx:else>
+                            <image class='view-seat-img' mode="scaleToFill" src="/pages/img/{{item.src}}" bindtap='bindGetLocation' data-x="{{r}}" data-y="{{c}}" data-src='{{item.src}}'></image>
+                        </block>
+                    </block>
+                </view>
+            </block>
+        </movable-view>
+    </movable-area>
+    <view class="view-seat-bottom">
+        <view class="view-seat-icons">
+            <view class="icon">
+                <image src="/pages/img/show.png"></image>
+                <view>空闲位置</view>
+            </view>
+            <view class="icon">
+                <image src="/pages/img/selected.png"></image>
+                <view>有人在卷</view>
+            </view>
+            <view class="icon">
+                <image src="/pages/img/mySeat.png"></image>
+                <view>我的宝座</view>
+            </view>
+            <view class="icon">
+                <image src="/pages/img/othersAp.png"></image>
+                <view>已被预约</view>
+            </view>
+            <view class="icon">
+                <image src="/pages/img/myAp.png"></image>
+                <view>我的预约</view>
+            </view>
+        </view>
+        <view class="line">
+            <view></view>
+        </view>
+        <view class="view-seat-info">
+            <view class="use-info" wx:if="{{!confirmAp}}">
+                <image src="/pages/img/today.png"></image>
+                <view class="info">
+                    <view class="item-unselect">
+                        <view>空闲:</view>
+                        <view>{{free}}</view>
+                    </view>
+                    <view class="item-unselect">
+                        <view>在卷:</view>
+                        <view>{{used}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="use-info" wx:if="{{confirmAp}}">
+                <image src="/pages/img/study.png"></image>
+                <block wx:if="{{!arrive}}">
+                    <view class="info">
+                        <view class="item-selected">
+                            <view>{{selectArea}}区 {{showSeat.x}}排{{showSeat.y}}位</view>
+                        </view>
+                        <view class="item-selected-time">
+                            <block>
+                                请在<view style="font-weight: 500; color: #333333;">{{surplus}}</view>分钟内入座
+                            </block>
+                        </view>
+                    </view>
+                </block>
+                <block wx:if="{{arrive}}">
+                    <view class="item-inStudy">
+                        <view>{{selectArea}}区 {{showSeat.x}}排{{showSeat.y}}位</view>
+                    </view>
+                </block>
+            </view>
+        </view>
+        <view class="view-seat-button">
+            <view class="item" wx:if="{{!confirmAp}}">
+                <view>请先选座</view>
+            </view>
+            <view wx:if="{{confirmAp}}">
+                <view class="item" style="background-color: #529081;" wx:if="{{arrive == false}}" bindtap="checkArrive">我已到达</view>
+                <view class="item" style="background-color: #529081;" wx:if="{{arrive}}" bindtap="leave">我已离开</view>
+            </view>
+        </view>
+    </view>
+</view>
+<l-dialog show="{{showSelect}}" type="confirm" show-title="{{false}}" title="标题" content="是否选择{{showSeat.x}}排{{showSeat.y}}座位置？" bind:lintap="exitChoose" bind:lincancel="exitChoose" bind:linconfirm="confirmSeat" />
+<l-dialog show="{{showCancel}}" type="confirm" show-title="{{false}}" title="标题" content="是否取消 预约/占有 该位置？" bind:lintap="exitCancel" bind:lincancel="exitCancel" bind:linconfirm="cancelSeat" />
+<l-dialog show="{{showBack}}" type="confirm" show-title="{{false}}" title="标题" content="请返回{{selectArea}}区签到" bind:lintap="exitCancel" bind:lincancel="exitCancel" bind:linconfirm="back" />
+<l-message show="{{showTime}}" type="success" content="{{content}}" icon=" " duration="2500" />

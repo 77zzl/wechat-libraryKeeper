@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "l-tabs": "/pages/dist/tabs/index",
+    "l-tabpanel": "/pages/dist/tabpanel/index",
+    "l-circle": "/pages/dist/circle/index",
+    "l-arc-popup": "/pages/dist/arc-popup/index"
+  }
+}
